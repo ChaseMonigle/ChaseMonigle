@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chase Monigle — Actor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #faf9f6;
+    --ink: #111110;
+    --ink-mid: #555550;
+    --ink-light: #999990;
+    --rule: #e2e0d8;
+    --accent: #b8a898;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+  }
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: #ddd8d0;
+    min-height: 100vh;
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .hero-image .placeholder-label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: #999;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    gap: 0.5rem;
+  }
+  .hero-image .placeholder-label svg { opacity: 0.4; }
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 4rem 4rem 4rem 5rem;
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+  }
+  .hero-name em {
+    display: block;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-mid);
+  }
+  .hero-tagline {
+    font-size: 13px;
+    color: var(--ink-mid);
+    max-width: 320px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--rule);
+  }
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--rule);
+  }
+  .stat { display: flex; flex-direction: column; gap: 0.15rem; }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--rule);
+    max-width: 80px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { border-top: 0.5px solid var(--rule); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .about-bio {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--ink-mid);
+  }
+  .about-bio p + p { margin-top: 1.5rem; }
+  .about-details { display: flex; flex-direction: column; gap: 0; }
+  .detail-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.9rem 0;
+    border-bottom: 0.5px solid var(--rule);
+    font-size: 13px;
+  }
+  .detail-key {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .detail-val { color: var(--ink); font-weight: 400; }
+
+  /* ── GALLERY ── */
+  #gallery { background: #f2f0eb; border-top: 0.5px solid var(--rule); }
+  .gallery-tabs {
+    display: flex; gap: 0;
+    margin-bottom: 3rem;
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .tab-btn {
+    padding: 0.6rem 1.5rem 0.75rem;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: none; border: none; cursor: pointer;
+    color: var(--ink-light);
+    border-bottom: 1.5px solid transparent;
+    margin-bottom: -0.5px;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .gallery-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #d8d4cc;
+    position: relative;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.03); }
+  .gallery-item .ph {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #aaa; gap: 0.4rem;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── RESUME ── */
+  #resume { border-top: 0.5px solid var(--rule); }
+  .resume-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+  .resume-block { margin-bottom: 3rem; }
+  .resume-block-title {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding-bottom: 0.75rem;
+    border-bottom: 0.5px solid var(--rule);
+    margin-bottom: 1.25rem;
+  }
+  .resume-line {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 0.65rem 0;
+    border-bottom: 0.5px solid var(--rule);
+    font-size: 13px;
+    align-items: baseline;
+  }
+  .resume-role { font-weight: 400; color: var(--ink); }
+  .resume-sub { font-size: 11px; color: var(--ink-light); margin-top: 1px; }
+  .resume-year { font-size: 11px; color: var(--ink-light); white-space: nowrap; }
+  .skills-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding-top: 0.5rem;
+  }
+  .skill-tag {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 0.5px solid var(--rule);
+    color: var(--ink-mid);
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--ink); border-top: 0.5px solid var(--rule); }
+  #contact .section-tag { color: #666; }
+  #contact .section-tag::after { background: #333; }
+  #contact .section-title { color: #faf9f6; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .contact-line {
+    display: flex; flex-direction: column; gap: 0.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid #2a2a28;
+  }
+  .contact-line-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #555550;
+  }
+  .contact-line-val {
+    font-size: 15px;
+    color: #ccc8c0;
+    font-weight: 300;
+  }
+  .contact-line-val a { color: inherit; text-decoration: none; }
+  .contact-note {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #faf9f6;
+    line-height: 1.25;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 3rem;
+    background: var(--ink);
+    border-top: 0.5px solid #2a2a28;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #444;
+  }
+  .footer-copy { font-size: 11px; color: #444; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 10px; letter-spacing: 0.1em; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-image { min-height: 70vh; }
+    .hero-content { padding: 3rem 1.5rem 4rem; }
+    .about-grid, .resume-col-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    section { padding: 5rem 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Chase Monigle</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-image">
+    <img src="wild4.jpg" alt="Chase Monigle" />
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Actor &mdash; Indialantic, Florida</p>
+    <h1 class="hero-name">
+      Chase<br/>
+      <em>Monigle</em>
+    </h1>
+    <p class="hero-tagline">
+      Film &bull; Television &bull; Commercial.<br/>
+      Open to any role. Ready for any room.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-val">6'0"</span>
+        <span class="stat-label">Height</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">185</span>
+        <span class="stat-label">Weight (lbs)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">Athletic</span>
+        <span class="stat-label">Build</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">Florida</span>
+        <span class="stat-label">Based</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-tag">About</p>
+    <h2 class="section-title">The Actor</h2>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>
+          A lot of people told Chase Monigle he should be an actor — and he took that seriously.
+          Born and raised in Indialantic, Florida and a graduate of the Florida Institute of
+          Technology, Chase brings a natural charisma and effortless screen presence to everything
+          he steps into.
+        </p>
+        <p>
+          Charismatic, high-energy, and genuinely social, Chase connects with people instantly —
+          on camera and off. He's athletic, driven, and the kind of person who lights up a room
+          without trying. Whether it's a commercial, an on-camera interview, or a dramatic scene,
+          he shows up ready and fully committed.
+        </p>
+        <p>
+          Chase is completely open to any role and actively seeking new opportunities. He's
+          available for auditions, interviews, and on-set work across Florida and beyond.
+        </p>
+      </div>
+      <div class="about-details">
+        <div class="detail-row"><span class="detail-key">Full Name</span><span class="detail-val">Chase Monigle</span></div>
+        <div class="detail-row"><span class="detail-key">Height</span><span class="detail-val">6'0"</span></div>
+        <div class="detail-row"><span class="detail-key">Weight</span><span class="detail-val">185 lbs</span></div>
+        <div class="detail-row"><span class="detail-key">Build</span><span class="detail-val">Athletic</span></div>
+        <div class="detail-row"><span class="detail-key">Based In</span><span class="detail-val">Indialantic, Florida</span></div>
+        <div class="detail-row"><span class="detail-key">Training</span><span class="detail-val">Florida Institute of Technology</span></div>
+        <div class="detail-row"><span class="detail-key">Pursuing</span><span class="detail-val">Film, TV, Commercial — All Roles</span></div>
+        <div class="detail-row"><span class="detail-key">Eye Color</span><span class="detail-val">Brown</span></div>
+        <div class="detail-row"><span class="detail-key">Hair Color</span><span class="detail-val">Brown</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner">
+    <p class="section-tag">Gallery</p>
+    <h2 class="section-title">Photos</h2>
+
+    <div class="gallery-tabs">
+      <button class="tab-btn active" onclick="switchTab('headshots', this)">Headshots</button>
+      <button class="tab-btn" onclick="switchTab('lifestyle', this)">In the Wild</button>
+    </div>
+
+    <!-- HEADSHOTS TAB -->
+    <div id="tab-headshots" class="tab-panel active">
+      <div class="gallery-grid" style="grid-template-columns: repeat(2,1fr);">
+        <div class="gallery-item"><img src="headshot1.jpg" alt="Chase Monigle headshot" /></div>
+        <div class="gallery-item"><img src="headshot2.jpg" alt="Chase Monigle headshot" /></div>
+        <div class="gallery-item"><img src="headshot3.png" alt="Chase Monigle headshot" /></div>
+        <div class="gallery-item"><img src="wild4.jpg" alt="Chase Monigle" /></div>
+      </div>
+    </div>
+
+    <!-- IN THE WILD TAB -->
+    <div id="tab-lifestyle" class="tab-panel">
+      <div class="gallery-grid" style="grid-template-columns: repeat(2,1fr);">
+        <div class="gallery-item"><img src="hero.jpg" alt="Chase Monigle" /></div>
+        <div class="gallery-item" style="aspect-ratio:3/4;">
+          <img src="wild5.jpg" alt="Chase Monigle" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" />
+        </div>
+      </div>
+      <div style="margin-top:12px;width:100%;overflow:hidden;aspect-ratio:16/9;">
+        <img src="Wild7.jpg" alt="Chase Monigle" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="section-inner">
+    <p class="section-tag">Resume</p>
+    <h2 class="section-title">Experience &amp; Skills</h2>
+    <div class="resume-col-grid">
+      <div>
+        <div class="resume-block">
+          <p class="resume-block-title">Film &amp; Television</p>
+          <div class="resume-line">
+            <div><div class="resume-role">WRDE NBC News</div><div class="resume-sub">On-camera interview — Quest Kayak</div></div>
+            <div class="resume-year">2025</div>
+          </div>
+          <div class="resume-line">
+            <div><div class="resume-role">WRDE NBC News</div><div class="resume-sub">On-camera interview — Shark Attack coverage</div></div>
+            <div class="resume-year">2024</div>
+          </div>
+        </div>
+        <div class="resume-block">
+          <p class="resume-block-title">Commercial</p>
+          <div class="resume-line">
+            <div><div class="resume-role">Lawns Unlimited</div><div class="resume-sub">Commercial — Featured talent</div></div>
+            <div class="resume-year">2025</div>
+          </div>
+          <div class="resume-line">
+            <div><div class="resume-role">Florida Institute of Technology</div><div class="resume-sub">Institutional commercial — Featured talent</div></div>
+            <div class="resume-year">2026</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="resume-block">
+          <p class="resume-block-title">Training &amp; Education</p>
+          <div class="resume-line">
+            <div><div class="resume-role">Florida Institute of Technology</div><div class="resume-sub">Graduate — B.S. Business Management</div></div>
+            <div class="resume-year">2026</div>
+          </div>
+          <div class="resume-line">
+            <div><div class="resume-role">Introduction to Performance</div><div class="resume-sub">Florida Institute of Technology</div></div>
+            <div class="resume-year">2024</div>
+          </div>
+          <div class="resume-line">
+            <div><div class="resume-role">Public Speaking &amp; Presentation</div><div class="resume-sub">Florida Institute of Technology</div></div>
+            <div class="resume-year">2023</div>
+          </div>
+          <div class="resume-line">
+            <div><div class="resume-role">Communication &amp; Media Studies</div><div class="resume-sub">Florida Institute of Technology</div></div>
+            <div class="resume-year">2023</div>
+          </div>
+          <div class="resume-line">
+            <div><div class="resume-role">On-Camera Experience</div><div class="resume-sub">Independent work &amp; self-directed study</div></div>
+            <div class="resume-year">Ongoing</div>
+          </div>
+        </div>
+        <div class="resume-block">
+          <p class="resume-block-title">Traits</p>
+          <div class="skills-list">
+            <span class="skill-tag">Charismatic</span>
+            <span class="skill-tag">High Energy</span>
+            <span class="skill-tag">Natural on Camera</span>
+            <span class="skill-tag">Social &amp; Outgoing</span>
+            <span class="skill-tag">Athletic Build</span>
+            <span class="skill-tag">Quick Learner</span>
+            <span class="skill-tag">Comedic Timing</span>
+            <span class="skill-tag">Approachable</span>
+            <span class="skill-tag">Confident</span>
+          </div>
+        </div>
+        <div class="resume-block">
+          <p class="resume-block-title">Physical</p>
+          <div class="resume-line">
+            <div class="resume-role">Height</div><div class="resume-year">6'0"</div>
+          </div>
+          <div class="resume-line">
+            <div class="resume-role">Weight</div><div class="resume-year">185 lbs</div>
+          </div>
+          <div class="resume-line">
+            <div class="resume-role">Build</div><div class="resume-year">Athletic</div>
+          </div>
+          <div class="resume-line">
+            <div class="resume-role">Eyes</div><div class="resume-year">Brown</div>
+          </div>
+          <div class="resume-line">
+            <div class="resume-role">Hair</div><div class="resume-year">Brown</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-tag">Contact</p>
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-grid">
+      <div class="contact-note">
+        Open to auditions, castings,<br/>
+        and on-set opportunities<br/>
+        across Florida and beyond.
+      </div>
+      <div>
+        <div class="contact-line">
+          <span class="contact-line-label">Email</span>
+          <span class="contact-line-val"><a href="mailto:Chasemonigle1@gmail.com">Chasemonigle1@gmail.com</a></span>
+        </div>
+        <div class="contact-line">
+          <span class="contact-line-label">Phone</span>
+          <span class="contact-line-val"><a href="tel:+13023817987">(302) 381-7987</a></span>
+        </div>
+        <div class="contact-line">
+          <span class="contact-line-label">Location</span>
+          <span class="contact-line-val">Indialantic, Florida</span>
+        </div>
+        <div class="contact-line">
+          <span class="contact-line-label">Representation</span>
+          <span class="contact-line-val" style="color:#555550;">Available for direct booking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Chase Monigle</span>
+  <span class="footer-copy">&copy; 2026 · All rights reserved</span>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
